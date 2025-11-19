@@ -8,10 +8,16 @@
 </head>
 <body class="with-nav">
   {% if current_user.is_authenticated %}
+  <div class="nav-overlay" id="navOverlay"></div>
   <nav class="nav">
     <div class="nav-content">
       <a href="{{ url_for('dashboard') }}" class="nav-brand">Hit & Blow</a>
-      <div class="nav-links">
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div class="nav-links" id="navLinks">
         <a href="{{ url_for('dashboard') }}">ダッシュボード</a>
         <a href="{{ url_for('start') }}">新しいゲーム</a>
         <a href="{{ url_for('history') }}">履歴</a>
@@ -35,5 +41,33 @@
 
     {% block content %}{% endblock %}
   </div>
+
+  <script>
+    // Mobile hamburger menu
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    const navOverlay = document.getElementById('navOverlay');
+
+    if (hamburger) {
+      hamburger.addEventListener('click', function() {
+        navLinks.classList.toggle('active');
+        navOverlay.classList.toggle('active');
+      });
+
+      navOverlay.addEventListener('click', function() {
+        navLinks.classList.remove('active');
+        navOverlay.classList.remove('active');
+      });
+
+      // Close menu when clicking on a link
+      const links = navLinks.querySelectorAll('a');
+      links.forEach(link => {
+        link.addEventListener('click', function() {
+          navLinks.classList.remove('active');
+          navOverlay.classList.remove('active');
+        });
+      });
+    }
+  </script>
 </body>
 </html>
