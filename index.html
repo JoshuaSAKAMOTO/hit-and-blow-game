@@ -1,43 +1,109 @@
 <!doctype html>
 <html lang="ja">
-    
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
-    <title>Hit_and_Blow_game</title>
-  </head>
-  <body>
-    <style>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hit & Blow Game</title>
+  <style>
     body {
-        font-family: "Meiryo UI";
-        }
-        </style>
-    <h1>Hit&Blowゲームのルール説明</h1>
-    <p>コンピュータが選んだ数字を当てるゲームです。
-        重複しない数字を予測して入力すると、正解の数字と比べた結果が返ってきす。<br>
-         桁の位置と数字が同じだとHit。桁の位置は違うが数字が同じだとBlow。
-         これらの情報からコンピュータが選んだ数字を予測し10回以内に当ててください。<br>
-         ユーザネームを登録して始めてください</p>
-    <form action="../../cgi-bin/jk3/ht01.py" method="get">
-    <div class="input-group mb-3">
-        <input type="text" name="username" class="form-control" placeholder="Username" aria-label="Recipient's username" aria-describedby="button-addon2">
-        <button class="btn btn-outline-secondary" type="submit" id="button-addon2">送信</button>
-      </div>
+      font-family: serif;
+      background-color: #f5f5dc;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      background-color: white;
+      border: 2px solid #333;
+      padding: 30px;
+      max-width: 500px;
+      width: 100%;
+      box-shadow: 3px 3px 0px #333;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 28px;
+      margin: 0 0 10px 0;
+      border-bottom: 2px solid #333;
+      padding-bottom: 10px;
+    }
+
+    h2 {
+      font-size: 18px;
+      margin: 20px 0 10px 0;
+    }
+
+    p {
+      line-height: 1.6;
+      margin: 10px 0;
+    }
+
+    ul {
+      margin: 10px 0;
+      padding-left: 30px;
+    }
+
+    li {
+      margin: 5px 0;
+    }
+
+    label {
+      display: block;
+      margin: 20px 0 5px 0;
+      font-weight: bold;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #333;
+      font-size: 16px;
+      box-sizing: border-box;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #333;
+      color: white;
+      border: none;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    button:hover {
+      background-color: #555;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Hit & Blow</h1>
+    <p style="text-align: center; font-style: italic;">数字を当てる頭脳ゲーム</p>
+
+    <h2>ルール説明</h2>
+    <p>コンピュータが選んだ<strong>3桁の重複しない数字</strong>を当ててください。</p>
+    <ul>
+      <li><strong>Hit</strong>: 数字と桁が合っている</li>
+      <li><strong>Blow</strong>: 数字は合っているが桁が違う</li>
+    </ul>
+    <p>10回以内に正解を目指しましょう！</p>
+
+    <form action="ht01.py" method="get">
+      <label for="username">プレイヤー名</label>
+      <input type="text" name="username" id="username" required placeholder="名前を入力...">
+      <button type="submit">ゲームスタート</button>
     </form>
-    <!-- Optional JavaScript; choose one of the two! -->
+  </div>
+</body>
 
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-    -->
-  </body>
 </html>
