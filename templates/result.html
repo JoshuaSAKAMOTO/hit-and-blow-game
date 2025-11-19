@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hit & Blow Game - Result</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>Hit & Blow</h1>
+
+    <div class="result">
+      <p><strong>{{ count }}回目のチャレンジ</strong></p>
+      <div class="result-number">{{ guess }}</div>
+      <div>
+        <div class="score">
+          <div class="score-value">{{ hit }}</div>
+          <div class="score-label">Hit</div>
+        </div>
+        <div class="score">
+          <div class="score-value">{{ blow }}</div>
+          <div class="score-label">Blow</div>
+        </div>
+      </div>
+    </div>
+
+    {% if won %}
+    <div class="success">
+      <h2>Congratulations!</h2>
+      <p>おめでとうございます、<strong>{{ username }}</strong>さん！</p>
+      <p><strong>{{ count }}</strong>回で正解しました！</p>
+    </div>
+    <a href="{{ url_for('index') }}" class="button">トップに戻る</a>
+    {% else %}
+    <p style="margin-top: 20px; text-align: center;">次の予想を入力してください</p>
+    <form action="{{ url_for('guess') }}" method="post">
+      <input type="text" name="answer" required maxlength="3" autofocus>
+      <button type="submit">回答する</button>
+    </form>
+
+    {% if history %}
+    <div class="history">
+      <h2>過去の予想</h2>
+      {% for item in history %}
+      <div class="history-item">
+        <div class="attempt">{{ item.attempt }}回目</div>
+        <div class="guess-number">{{ item.guess }}</div>
+        <div class="scores">
+          <span>Hit: <strong>{{ item.hit }}</strong></span>
+          <span>Blow: <strong>{{ item.blow }}</strong></span>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+    {% endif %}
+  </div>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hit & Blow Game</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+  <div class="container">
+    <h1>Hit & Blow</h1>
+    <p style="text-align: center; font-style: italic;">数字を当てる頭脳ゲーム</p>
+
+    <h2>ルール説明</h2>
+    <p>コンピュータが選んだ<strong>3桁の重複しない数字</strong>を当ててください。</p>
+    <ul>
+      <li><strong>Hit</strong>: 数字と桁が合っている</li>
+      <li><strong>Blow</strong>: 数字は合っているが桁が違う</li>
+    </ul>
+    <p>10回以内に正解を目指しましょう！</p>
+
+    <form action="{{ url_for('start') }}" method="get">
+      <label for="username">プレイヤー名</label>
+      <input type="text" name="username" id="username" required placeholder="名前を入力...">
+      <button type="submit">ゲームスタート</button>
+    </form>
+  </div>
+</body>
+
+</html>
