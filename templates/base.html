@@ -6,7 +6,7 @@
   <title>{% block title %}Hit & Blow Game{% endblock %}</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-<body>
+<body class="with-nav">
   {% if current_user.is_authenticated %}
   <nav class="nav">
     <div class="nav-content">
