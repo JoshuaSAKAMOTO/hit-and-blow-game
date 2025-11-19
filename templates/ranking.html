@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}ランキング - Hit & Blow{% endblock %}
+
+{% block content %}
+<h1>ランキング</h1>
+<p style="text-align: center;">最少試行回数でクリアしたプレイヤーのランキング</p>
+
+{% if ranking_data %}
+<table>
+  <thead>
+    <tr>
+      <th style="width: 60px;">順位</th>
+      <th>ユーザー名</th>
+      <th style="width: 100px;">最高記録</th>
+      <th style="width: 100px;">総ゲーム数</th>
+      <th style="width: 100px;">成功数</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for user in ranking_data %}
+    <tr {% if current_user.is_authenticated and user.username == current_user.username %}style="background-color: #ffffcc;"{% endif %}>
+      <td style="text-align: center; font-weight: bold;">{{ loop.index }}</td>
+      <td><strong>{{ user.username }}</strong></td>
+      <td style="text-align: center; font-family: monospace;">{{ user.best_attempts }}回</td>
+      <td style="text-align: center;">{{ user.total_games }}</td>
+      <td style="text-align: center;">{{ user.won_games }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p style="text-align: center; margin: 40px 0;">まだランキングデータがありません。</p>
+{% endif %}
+
+{% if current_user.is_authenticated %}
+<div style="text-align: center; margin-top: 30px;">
+  <a href="{{ url_for('dashboard') }}" class="button">ダッシュボードに戻る</a>
+</div>
+{% endif %}
+{% endblock %}

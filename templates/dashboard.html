@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}ダッシュボード - Hit & Blow{% endblock %}
+
+{% block content %}
+<h1>ダッシュボード</h1>
+<p style="text-align: center;">ようこそ、<strong>{{ current_user.username }}</strong>さん！</p>
+
+<h2>統計情報</h2>
+<div class="stats-grid">
+  <div class="stat-card">
+    <div class="stat-value">{{ stats.total_games }}</div>
+    <div class="stat-label">総ゲーム数</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-value">{{ stats.won_games }}</div>
+    <div class="stat-label">成功</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-value">{{ stats.win_rate }}%</div>
+    <div class="stat-label">勝率</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-value">{{ stats.average_attempts or '-' }}</div>
+    <div class="stat-label">平均試行回数</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-value">{{ stats.best_score or '-' }}</div>
+    <div class="stat-label">最高記録</div>
+  </div>
+</div>
+
+<a href="{{ url_for('start') }}" class="button">新しいゲームを始める</a>
+
+{% if recent_games %}
+<h2>最近のゲーム</h2>
+<table>
+  <thead>
+    <tr>
+      <th>日時</th>
+      <th>試行回数</th>
+      <th>結果</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for game in recent_games %}
+    <tr>
+      <td>{{ game.played_at.strftime('%Y-%m-%d %H:%M') }}</td>
+      <td>{{ game.attempts }}回</td>
+      <td>{% if game.won %}<strong style="color: green;">成功</strong>{% else %}失敗{% endif %}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<div style="text-align: center;">
+  <a href="{{ url_for('history') }}">すべての履歴を見る →</a>
+</div>
+{% endif %}
+{% endblock %}

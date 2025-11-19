@@ -9,3 +9,12 @@ services:
         value: 3.11.0
       - key: SECRET_KEY
         generateValue: true
+      - key: DATABASE_URL
+        fromDatabase:
+          name: hit-and-blow-db
+          property: connectionString
+
+databases:
+  - name: hit-and-blow-db
+    databaseName: hitblow
+    user: hitblow

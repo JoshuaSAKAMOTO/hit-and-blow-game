@@ -163,3 +163,183 @@ button:hover, .button:hover {
 .history-item .scores span {
   margin-right: 15px;
 }
+
+/* Navigation */
+.nav {
+  background-color: #333;
+  padding: 15px 0;
+  margin: -20px -20px 20px -20px;
+  border-bottom: 3px solid #000;
+}
+
+.nav-content {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.nav-brand {
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  padding: 5px 10px;
+  border: 1px solid #555;
+  font-size: 14px;
+}
+
+.nav-links a:hover {
+  background-color: #555;
+}
+
+/* Flash messages */
+.flash-messages {
+  margin: 20px 0;
+}
+
+.flash {
+  padding: 12px;
+  margin: 10px 0;
+  border: 2px solid;
+  text-align: center;
+}
+
+.flash.success {
+  background-color: #e6ffe6;
+  border-color: #00cc00;
+  color: #006600;
+}
+
+.flash.error {
+  background-color: #ffcccc;
+  border-color: #cc0000;
+  color: #cc0000;
+}
+
+/* Stats cards */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 15px;
+  margin: 20px 0;
+}
+
+.stat-card {
+  border: 2px solid #333;
+  padding: 15px;
+  text-align: center;
+}
+
+.stat-value {
+  font-size: 32px;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.stat-label {
+  font-size: 12px;
+  color: #666;
+  text-transform: uppercase;
+}
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+table th,
+table td {
+  border: 1px solid #333;
+  padding: 10px;
+  text-align: left;
+}
+
+table th {
+  background-color: #f0f0f0;
+  font-weight: bold;
+}
+
+table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* Pagination */
+.pagination {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.pagination a,
+.pagination span {
+  display: inline-block;
+  padding: 8px 12px;
+  margin: 0 5px;
+  border: 1px solid #333;
+  text-decoration: none;
+  color: #333;
+}
+
+.pagination a:hover {
+  background-color: #f0f0f0;
+}
+
+.pagination .current {
+  background-color: #333;
+  color: white;
+  font-weight: bold;
+}
+
+/* Auth forms */
+.auth-link {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.auth-link a {
+  color: #333;
+  text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .container {
+    padding: 20px;
+    max-width: 100%;
+  }
+
+  .nav-content {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  table {
+    font-size: 12px;
+  }
+
+  table th,
+  table td {
+    padding: 5px;
+  }
+}

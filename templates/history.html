@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}ゲーム履歴 - Hit & Blow{% endblock %}
+
+{% block content %}
+<h1>ゲーム履歴</h1>
+
+{% if pagination.items %}
+<table>
+  <thead>
+    <tr>
+      <th>日時</th>
+      <th>正解</th>
+      <th>試行回数</th>
+      <th>結果</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for game in pagination.items %}
+    <tr>
+      <td>{{ game.played_at.strftime('%Y-%m-%d %H:%M') }}</td>
+      <td style="font-family: monospace; letter-spacing: 5px;">{{ game.secret_number }}</td>
+      <td>{{ game.attempts }}回</td>
+      <td>{% if game.won %}<strong style="color: green;">成功</strong>{% else %}失敗{% endif %}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<!-- Pagination -->
+{% if pagination.pages > 1 %}
+<div class="pagination">
+  {% if pagination.has_prev %}
+    <a href="{{ url_for('history', page=pagination.prev_num) }}">← 前</a>
+  {% endif %}
+
+  {% for page_num in pagination.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+    {% if page_num %}
+      {% if page_num == pagination.page %}
+        <span class="current">{{ page_num }}</span>
+      {% else %}
+        <a href="{{ url_for('history', page=page_num) }}">{{ page_num }}</a>
+      {% endif %}
+    {% else %}
+      <span>...</span>
+    {% endif %}
+  {% endfor %}
+
+  {% if pagination.has_next %}
+    <a href="{{ url_for('history', page=pagination.next_num) }}">次 →</a>
+  {% endif %}
+</div>
+{% endif %}
+{% else %}
+<p style="text-align: center; margin: 40px 0;">まだゲームをプレイしていません。</p>
+<a href="{{ url_for('start') }}" class="button">最初のゲームを始める</a>
+{% endif %}
+{% endblock %}

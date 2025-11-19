@@ -14,3 +14,8 @@ __pycache__/
 
 # Environment
 .env
+
+# Database
+instance/
+*.db
+*.sqlite

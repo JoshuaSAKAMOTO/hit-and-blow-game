@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}新規登録 - Hit & Blow{% endblock %}
+
+{% block content %}
+<h1>新規登録</h1>
+<p style="text-align: center;">アカウントを作成してゲームを始めましょう</p>
+
+<form method="post">
+  <label for="username">ユーザー名</label>
+  <input type="text" name="username" id="username" required autofocus>
+
+  <label for="email">メールアドレス</label>
+  <input type="email" name="email" id="email" required>
+
+  <label for="password">パスワード（6文字以上）</label>
+  <input type="password" name="password" id="password" required minlength="6">
+
+  <label for="password_confirm">パスワード（確認）</label>
+  <input type="password" name="password_confirm" id="password_confirm" required minlength="6">
+
+  <button type="submit">登録</button>
+</form>
+
+<div class="auth-link">
+  既にアカウントをお持ちの方は<a href="{{ url_for('login') }}">ログイン</a>
+</div>
+{% endblock %}

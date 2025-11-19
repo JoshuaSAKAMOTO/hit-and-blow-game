@@ -1,47 +1,40 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Hit & Blow Game - Play</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
-  <div class="container">
-    <h1>Game Start</h1>
-    <p>さあ、ゲームを始めましょう！</p>
+{% extends "base.html" %}
 
-    <p>ようこそ、<strong>{{ username }}</strong>さん</p>
-    {% if count > 0 %}
-    <p>現在 <strong>{{ count }}</strong> 回目のチャレンジです</p>
-    {% endif %}
+{% block title %}ゲームプレイ - Hit & Blow{% endblock %}
 
-    {% if error %}
-    <div class="error">{{ error }}</div>
-    {% endif %}
+{% block content %}
+<h1>ゲームプレイ</h1>
 
-    <p style="margin-top: 20px;">3桁の数字を予想して入力してください</p>
+{% if count == 0 %}
+<p style="text-align: center;">さあ、ゲームを始めましょう！</p>
+{% else %}
+<p style="text-align: center;">現在 <strong>{{ count }}</strong> 回目のチャレンジです（残り {{ 10 - count }} 回）</p>
+{% endif %}
 
-    <form action="{{ url_for('guess') }}" method="post">
-      <input type="text" name="answer" required maxlength="3" placeholder="123" autofocus>
-      <button type="submit">回答する</button>
-    </form>
+{% if error %}
+<div class="error">{{ error }}</div>
+{% endif %}
 
-    {% if history %}
-    <div class="history">
-      <h2>過去の予想</h2>
-      {% for item in history %}
-      <div class="history-item">
-        <div class="attempt">{{ item.attempt }}回目</div>
-        <div class="guess-number">{{ item.guess }}</div>
-        <div class="scores">
-          <span>Hit: <strong>{{ item.hit }}</strong></span>
-          <span>Blow: <strong>{{ item.blow }}</strong></span>
-        </div>
-      </div>
-      {% endfor %}
+<p style="margin-top: 20px; text-align: center;">3桁の数字を予想して入力してください</p>
+
+<form action="{{ url_for('guess') }}" method="post">
+  <input type="text" name="answer" required maxlength="3" placeholder="123" autofocus>
+  <button type="submit">回答する</button>
+</form>
+
+{% if history %}
+<div class="history">
+  <h2>過去の予想</h2>
+  {% for item in history %}
+  <div class="history-item">
+    <div class="attempt">{{ item.attempt }}回目</div>
+    <div class="guess-number">{{ item.guess }}</div>
+    <div class="scores">
+      <span>Hit: <strong>{{ item.hit }}</strong></span>
+      <span>Blow: <strong>{{ item.blow }}</strong></span>
     </div>
-    {% endif %}
   </div>
-</body>
-</html>
+  {% endfor %}
+</div>
+{% endif %}
+{% endblock %}
